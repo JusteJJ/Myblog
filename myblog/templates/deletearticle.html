@@ -1,0 +1,26 @@
+{% extends 'bootstrap.html '%}
+{% block title %}Trinti įrašą{% endblock %}
+{% block content %}
+<br/>
+<br/>
+<br/>
+{% if user.is_authenticated %}
+	<h2> Trinti įrašą </h2>
+	<br/>
+	<br/>
+	<h4>Delete: {{ post.title }}</h4>
+	<br/>
+	<div class="form-group">
+		<form method="POST">
+			{% csrf_token %}
+			
+				<strong>Ar tikrai norite ištrinti įrašą?</strong><br/><br/>
+				<button class="btn btn-danger"><strong>Trinti</strong></button>&nbsp;<a href="{% url 'home' %}" class="btn btn-dark"><strong>Grįžti</strong></a>
+			
+		</form>
+	</div>
+{% else %}
+Prisijunkite, kad galėtumėte atlikti veiksmus.
+{% endif %}
+
+{% endblock %}

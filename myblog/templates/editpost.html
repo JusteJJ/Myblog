@@ -1,0 +1,30 @@
+{% extends 'bootstrap.html '%}
+{% block title %}Redaguoti įrašą{% endblock %}
+{% block content %}
+<br/>
+<br/>
+<br/>
+{% if user.is_authenticated %}
+	<h2> Keisti įrašą </h2>
+	<br/>
+	<br/>
+
+	<div class="form-group">
+		<form method="POST">
+			{% csrf_token %}
+			{{ form.as_p }}
+				<button class="btn btn-dark"><strong>Redaguoti</strong></button>&nbsp;<a href="{% url 'home' %}" class="btn btn-secondary"><strong>Grįžti</strong></a>
+		</form>
+	</div>
+{% else %}
+Prisijunkite, kad galėtumėte atlikti veiksmus.	
+{% endif %}
+	<ul>
+	{% for post in object_list %}
+		<li><a href="{% url 'articles' post.pk %}">{{ post.title }}</a> - {{ post.author.first_name }}<br/>
+		{{ post.body }}</li>
+	{% endfor %}
+	</ul>
+
+
+{% endblock %}

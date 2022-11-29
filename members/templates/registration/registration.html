@@ -1,0 +1,26 @@
+{% extends 'bootstrap.html '%}
+{% block title %}Registracija{% endblock %}
+{% block content %}
+<br/>
+<br/>
+<br/>
+<h2>Registruotis</h2>
+<br/>
+<br/>
+<div class="form-group">
+	<form method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button class="btn btn-dark"><strong>Registruotis</strong></button>
+		<a href="{% url 'home' %}" class="btn btn-danger"><strong>Atšaukti</strong></a>
+
+	</form>
+</div>
+<ul>
+{% for post in object_list %}
+	<li><a href="{% url 'articles' post.pk %}">{{ post.title }}</a> - {{ post.author.first_name }}<br/>
+	{{ post.body }}</li>
+{% endfor %}
+</ul>
+
+{% endblock %}

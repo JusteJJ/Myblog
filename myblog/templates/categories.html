@@ -1,0 +1,15 @@
+{% extends 'bootstrap.html '%}
+{% block content %}
+<br/>
+<br/>
+<br/>
+<h2> Kategorijos </h2>
+
+<ul>
+{% for post in object_list %}
+	<li><a href="{% url 'articles' post.pk %}">{{ post.title }}</a>-{{ post.category }} - {{ post.author.first_name }} - {{ post.proclaim_date }}<br/>
+	{{ post.body|slice:":150"|safe }}</li>
+{% endfor %}
+</ul>
+
+{% endblock %}
